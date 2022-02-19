@@ -12,9 +12,9 @@ import FavoriteList from './Pages/Favorite-List/FavoriteList';
 import ApplyDetails from './Pages/AppplyDetails/ApplyDetails';
 import JobPost from './Pages/Job-Post/JobPost';
 import AuthProvider from './AuthProvider/AuthProvider';
+import HiredList from './Pages/HiredList/HiredList';
 
 function App() {
-  const [favoriteList,setFavoriteList]=useState([])
   return (
     
     <Router>
@@ -23,9 +23,10 @@ function App() {
       <Route path="/" element={<HomeMain/>}/>
         <Route path="home" element={<HomeMain/>}/>
         <Route path="post-job" element={<JobPost/>}/>
-        <Route path="favorite" element={<FavoriteList favoriteList={favoriteList} setFavoriteList={setFavoriteList}/>}/>
-        <Route path="sector/:sectorId" element={<IndividualSectorEngrList  favoriteList={favoriteList} setFavoriteList={setFavoriteList}/>} />
-        <Route path="/apply/:applyId" element={<ApplyDetails/>} />
+        <Route path="favorite" element={<FavoriteList/>}/>
+        <Route path="hire" element={<HiredList/>}/>
+        {/* <Route path="sector/:sectorId" element={<IndividualSectorEngrList/>
+        <Route path="/apply/:applyId" element={<ApplyDetails/>} /> */}
       </Routes>
       <Footer/>
       </Router>

@@ -21,7 +21,7 @@ const NavHeader = () => {
       {user?.email?<p onClick={logOut}>{user?.displayName}</p>
         :<p onClick={loginWithGoogle}>Login</p>}
         <NavLink as={Link} to="favorite">Favorite List</NavLink>
-        <NavLink as={Link} to="post-job">Hired List</NavLink>
+        <NavLink as={Link} to="hire">Hired List</NavLink>
 
     </Nav>
  </Navbar.Collapse>
