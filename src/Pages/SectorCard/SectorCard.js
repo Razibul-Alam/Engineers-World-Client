@@ -2,31 +2,29 @@ import React from 'react';
 import { Col,Card,Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { addFavorites } from '../Redux-feature/EngineersSlice';
 
-const SectorCard = ({job}) => {
-    const{_id,img,company,description,designation}=job;
-    const addToFavorite=(job)=>{
-      axios.post('http://localhost:5000/addfavorite',job)
-      .then(response => { 
-      })
-      }
+const SectorCard = ({user}) => {
+    const{id,name,email}=user;
+    const dispatch=useDispatch()
     return (
         <Col className=''>
       <Card>
-        <Card.Img variant="top" src={img} className='img-fluid' />
+        {/* <Card.Img variant="top" src={img} className='img-fluid' /> */}
         <Card.Body>
-          <Card.Title>{company}</Card.Title>
+          <Card.Title>{name}</Card.Title>
           <Card.Text>
-           {designation}
+           {email}
           </Card.Text>
           <Card.Text>
-           {description}
+           {name}
           </Card.Text>
           <div className="d-flex justify-content-between align-items-center">
           </div>
           <div className='d-flex justify-content-between'>
-          <button className='btn btn-success'onClick={()=>{addToFavorite(job)}}>Add To favorite</button>
-          <Link to={`apply/${_id}`}>Apply</Link>
+          <button className='btn btn-success'onClick={()=>dispatch(addFavorites(user))}>Add To favorite</button>
+          <Link to={`apply/${id}`}>Apply</Link>
           </div>
         </Card.Body>
       </Card>

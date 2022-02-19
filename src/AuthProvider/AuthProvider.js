@@ -6,10 +6,10 @@ const AuthProvider = ({children}) => {
     
     const infoContext=useFirebase()
     console.log(infoContext)
-    return (
-        <AuthContext.Provider value={infoContext}>
-            {children}
-        </AuthContext.Provider>
+    return (<></>
+        // <AuthContext.Provider value={infoContext}>
+        //     {children}
+        // </AuthContext.Provider>
        
     );
 };

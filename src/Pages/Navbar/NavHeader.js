@@ -1,29 +1,32 @@
 import React from 'react';
-import { Container, Navbar,Nav,NavDropdown,Button} from 'react-bootstrap';
+import { Container, Navbar,Nav,NavDropdown,Button, NavLink} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import useAuth from './../../Hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../Redux-feature/EngineersSlice';
+import useFirebase from './../../Hooks/useFirebase';
 
 const NavHeader = () => {
-  const{loginWithGoogle}=useAuth() 
+  const {user,loginWithGoogle,logOut}=useFirebase()
+  console.log(user)
+  const dispatch=useDispatch()
      return (
-//         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-//   <Container>
-//   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-//   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-//   <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Container>
+  <Navbar.Brand href="#home">Engineers World</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="ms-auto text-light">
-      <NavDropdown  title="More" id="collasible-nav-dropdown">
-        <NavDropdown.Item as={Link} to="favorite">Favorite-List</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="post-job">Post Job</NavDropdown.Item>
-        <p onClick={loginWithGoogle}>Login</p>
-        <NavDropdown.Item as={Link} to="post-job">Admin Dashboard</NavDropdown.Item>
-        
-      </NavDropdown>
+    <NavLink as={Link} to="/">Home</NavLink>
+      {user?.email?<p onClick={logOut}>{user?.displayName}</p>
+        :<p onClick={loginWithGoogle}>Login</p>}
+        <NavLink as={Link} to="favorite">Favorite List</NavLink>
+        <NavLink as={Link} to="post-job">Hired List</NavLink>
+
     </Nav>
-//   </Navbar.Collapse>
-//   </Container>
-// </Navbar>
+ </Navbar.Collapse>
+  </Container>
+ </Navbar>
     );
 };
 

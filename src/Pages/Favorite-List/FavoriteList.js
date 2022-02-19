@@ -1,29 +1,33 @@
 import React, { useEffect,useState } from 'react';
 import { Table } from 'react-bootstrap';
+import { useSelector,useDispatch } from 'react-redux';
+import { removeFavorite } from '../Redux-feature/EngineersSlice';
 
 const FavoriteList = () => {
-  const[favorite,setFavorite]=useState([])
-  useEffect(()=>{
-    fetch('http://localhost:5000/getfavorite')
-    .then(res=>res.json())
-    .then(data=>setFavorite(data))
-        },[]) 
-const removeFromFavoriteList=(id)=>{
-const remainList=favorite?.filter(singleFavorite=>id!==singleFavorite.id)
-console.log(remainList)
-}
-useEffect(()=>{
-removeFromFavoriteList()
-},[])
+  // useEffect(()=>{
+  //   fetch('http://localhost:5000/getfavorite')
+  //   .then(res=>res.json())
+  //   .then(data=>setFavorite(data))
+  //       },[]) 
+// const removeFromFavoriteList=(id)=>{
+// const remainList=favorite?.filter(singleFavorite=>id!==singleFavorite.id)
+// console.log(remainList)
+// }
+// useEffect(()=>{
+// removeFromFavoriteList()
+const dispatch=useDispatch()
+// },[])
+const favoriteEngineers=useSelector(state=>state.engineers.favoriteList)
+console.log(favoriteEngineers)
     return (
         <div className='container'>
-             {favorite?.length}
+             {favoriteEngineers?.length}
             <Table bordered hover responsive variant='dark'>
       <thead>
         <tr>
           <th>SL</th>
           <th>Name</th>
-          <th>Designation</th>
+          <th>Email</th>
           <th>Phone</th>
           <th>Action</th>
         </tr>
@@ -31,13 +35,12 @@ removeFromFavoriteList()
       <tbody>
 
       
-     {favorite?.map((singleFavorite,index)=><tr key={index}>
+     {favoriteEngineers?.map((singleFavorite,index)=><tr key={index}>
       <td>{index+1}</td>
-      <td>{singleFavorite.company}</td>
-      <td>{singleFavorite.designation}</td>
-      
-     
-      <td><button className='btn btn-danger'onClick={()=>{removeFromFavoriteList(singleFavorite._id)}}>Remove</button></td>
+      <td>{singleFavorite?.name}</td>
+      <td>{singleFavorite?.email}</td>
+      <td>{singleFavorite?.phone}</td>
+      <td><button className='btn btn-danger'onClick={()=>dispatch(removeFavorite(singleFavorite?.id))}>Remove</button></td>
       
     </tr>)}
      

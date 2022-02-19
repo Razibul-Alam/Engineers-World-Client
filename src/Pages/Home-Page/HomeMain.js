@@ -2,11 +2,16 @@ import React,{useState} from 'react';
 import Alljobs from '../SectorList/Alljobs'
 import HomeSidebar from './Home-Sidebar/HomeSidebar';
 import './Home-Sidebar/HomeSidebar.css'
+import { useSelector } from 'react-redux';
+import useFirebase from './../../Hooks/useFirebase';
 const HomeMain = () => {
     const[category,setCategory]=useState('m')
     const selectSector =(category)=>{
         setCategory(category)
             }
+            //  const allSectors=useSelector(state=>state.sectors.AllSectors)
+            //  console.log(allSectors)
+            
     return (
        
         <div className='row'>

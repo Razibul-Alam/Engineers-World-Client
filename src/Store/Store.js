@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-// import counterReducer from '../features/counter/counterSlice'
-// import counterReducer from '../Pages/CounterSlice'
-import sectorsReducer from '../Pages/Redux-feature/SectorsSlice'
+import engineersReducer from '../Pages/Redux-feature/EngineersSlice'
+import firebaseReducer from '../Pages/Redux-feature/FirebaseSlice'
 export default configureStore({
   reducer: {
-    sectors: sectorsReducer,
+    engineers:engineersReducer,
+    users:firebaseReducer,
   },
 })

@@ -16,7 +16,7 @@ import AuthProvider from './AuthProvider/AuthProvider';
 function App() {
   const [favoriteList,setFavoriteList]=useState([])
   return (
-    <AuthProvider>
+    
     <Router>
       <Header/>
       <Routes>
@@ -29,7 +29,7 @@ function App() {
       </Routes>
       <Footer/>
       </Router>
-      </AuthProvider>
+      
     
   );
 }
