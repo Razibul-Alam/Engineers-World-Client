@@ -1,25 +1,37 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeHire } from '../Redux-feature/EngineersSlice';
+import { Table } from 'react-bootstrap';
 
 const HiredList = () => {
     const hiredList=useSelector(state=>state.engineers.hiredList)
     console.log(hiredList)
     const dispatch=useDispatch()
     return (
-        <div>
-            <h3 className='text-center mt-5'>The Number of Hired Enginners {hiredList.length}</h3>
-            {hiredList?.map(hire=>{
-            return(<>
-           <div className='d-flex justify-content-center p-3 mt-4'>
-           <h6 className='text-primary text-decoration-none'>{hire.name}</h6>
-            <button onClick={()=>dispatch(removeHire(hire.id))} className='text-light bg-danger ms-3'>Delete</button>
-           </div>
-            </>)}
-            
-            )}
-            
-        </div>
+        <div className='container'>
+      <h4 className='text-center mt-3 mb-2'>The Number of Hired Engineers {hiredList?.length}</h4> 
+       {hiredList.length>0&&<Table
+        bordered hover responsive variant='light'>
+ <thead>
+   <tr>
+     <th>Name</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+
+ 
+{hiredList?.map((hire,index)=><tr key={index}>
+ <td>{hire?.name}</td>
+ <td><button className='btn btn-danger'onClick={()=>dispatch(removeHire(hire?.id))}>Remove</button></td>
+ 
+</tr>)}
+
+
+
+</tbody>
+</Table>}
+   </div>
     )
 };
 
