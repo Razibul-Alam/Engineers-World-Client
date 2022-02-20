@@ -35,7 +35,7 @@ export const EngineersSlice = createSlice({
     },
     removeHire:(state,action)=>{
       const remainHire=state.hiredList.filter(hire=>hire.id!==action.payload)
-      state.favoriteList=remainHire
+      state.hiredList=remainHire
       console.log(action.payload)
     },
   },

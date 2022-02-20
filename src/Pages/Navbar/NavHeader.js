@@ -18,8 +18,8 @@ const NavHeader = () => {
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="ms-auto text-light">
     <NavLink as={Link} to="/">Home</NavLink>
-      {user?.email?<p onClick={logOut}>{user?.displayName}</p>
-        :<p onClick={loginWithGoogle}>Login</p>}
+      {user?.email?<button onClick={logOut}>{user?.displayName}</button>
+        :<button onClick={loginWithGoogle}>Login</button>}
         <NavLink as={Link} to="favorite">Favorite List</NavLink>
         <NavLink as={Link} to="hire">Hired List</NavLink>
 
